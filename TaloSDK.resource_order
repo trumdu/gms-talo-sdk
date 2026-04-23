@@ -1,0 +1,19 @@
+{
+  "FolderOrderSettings":[
+    {"name":"Animation Curves","order":8,"path":"folders/Animation Curves.yy",},
+    {"name":"Fonts","order":5,"path":"folders/Fonts.yy",},
+    {"name":"Notes","order":9,"path":"folders/Notes.yy",},
+    {"name":"Particle Systems","order":10,"path":"folders/Particle Systems.yy",},
+    {"name":"Paths","order":3,"path":"folders/Paths.yy",},
+    {"name":"Sequences","order":7,"path":"folders/Sequences.yy",},
+    {"name":"Shaders","order":4,"path":"folders/Shaders.yy",},
+    {"name":"Sounds","order":2,"path":"folders/Sounds.yy",},
+    {"name":"Tile Sets","order":1,"path":"folders/Tile Sets.yy",},
+    {"name":"Timelines","order":6,"path":"folders/Timelines.yy",},
+  ],
+  "ResourceOrderSettings":[
+    {"name":"TaloSDK","order":1,"path":"extensions/TaloSDK/TaloSDK.yy",},
+    {"name":"obj_talo_demo","order":2,"path":"objects/obj_talo_demo/obj_talo_demo.yy",},
+    {"name":"rm_talo_demo","order":3,"path":"rooms/rm_talo_demo/rm_talo_demo.yy",},
+  ],
+}

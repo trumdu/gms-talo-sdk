@@ -1,0 +1,20 @@
+{
+  "$GMExtensionConfigSet": "GMExtensionConfigSet",
+  "configurables": {
+    "8a1c23b6-aa08-452b-b431-cd0b230f5e7a": null,
+    "9d33742d-0696-42b2-acce-83d878ed0c9f": {
+      "Default": {
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImFwaSI6dHJ1ZSwiaWF0IjoxNzc2OTE0ODI3fQ.iwca5XayVjcjKObGalW3CZOPuvQuqwOE7layFpPb4UA"
+      }
+    },
+    "b28615f6-da19-49b1-a84f-cf3c56b6a5c6": {
+      "Default": {
+        "value": "https://api-talo.trumduprojects.ru"
+      }
+    },
+    "931e6ce4-c9f7-476e-8126-3605d0e99234": null,
+    "11055a1d-d65c-40a4-b792-881043128408": null,
+    "0cdf9f8f-5d85-495d-828f-3cad4ea269bd": null,
+    "f1e2d3c4-b5a6-4789-9012-abcdef123456": null
+  }
+}
