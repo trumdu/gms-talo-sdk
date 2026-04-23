@@ -8,6 +8,8 @@ Use this with:
 
 ## Fast Route (What to open first)
 
+- HTTP route → GameMaker function index -> `TALO_API_GUIDE.md` §8 (synced with https://api.trytalo.com/public/docs)
+- Полный прогон всех 58 HTTP-маршрутов с живого сервера -> `../tools/test_routes.mjs` (`node extensions/TaloSDK/tools/test_routes.mjs`)
 - Auth/header issues -> `http/authentication.pdf`, then `http/common-errors.pdf`
 - Leaderboard/add_score logic -> `http/leaderboard-api.pdf`
 - Player identify/context -> `http/player-api.pdf`

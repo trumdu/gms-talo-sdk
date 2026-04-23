@@ -778,10 +778,20 @@ public final class TaloSDK {
   }
 
   // --- EventAPI ---
+  /** OpenAPI body field is {@code events}; accepts JSON array (wrapped) or full object. */
   public static double talo_events_track(String eventsJsonArray) {
     ensureConfigForApi();
     runPlayerApi("events_track", () -> {
-      HttpResult res = httpRequest("POST", "/v1/events", eventsJsonArray, true, requireAliasHeaderMap());
+      String raw = eventsJsonArray == null ? "[]" : eventsJsonArray.trim();
+      String body;
+      if (raw.startsWith("{")) {
+        body = raw;
+      } else if (raw.startsWith("[")) {
+        body = "{\"events\":" + raw + "}";
+      } else {
+        throw new IllegalArgumentException("eventsJsonArray must be a JSON array or object");
+      }
+      HttpResult res = httpRequest("POST", "/v1/events", body, true, requireAliasHeaderMap());
       sendAsync("events_track", true, res.code, res.body, null, false);
     });
     return 1;
@@ -1438,18 +1448,29 @@ public final class TaloSDK {
     return 1;
   }
 
-  public static double talo_players_relationships_confirm(double subscriptionId) {
+  private static String relationshipsSubscriptionPathSegment(String subscriptionId) {
+    if (subscriptionId == null || subscriptionId.isEmpty())
+      throw new IllegalArgumentException("subscription id required");
+    String s = subscriptionId.trim();
+    if (s.indexOf('/') >= 0 || s.indexOf('?') >= 0 || s.indexOf('#') >= 0)
+      throw new IllegalArgumentException("invalid subscription id");
+    return s;
+  }
+
+  /** {@code PUT /v1/players/relationships/:id/confirm} — {@code id} numeric or UUID string. */
+  public static double talo_players_relationships_confirm_str(String subscriptionId) {
     ensureConfigForApi();
+    final String seg = relationshipsSubscriptionPathSegment(subscriptionId);
     runPlayerApi("players_relationships_confirm", () -> {
       HttpResult res = httpRequest(
-          "PUT",
-          "/v1/players/relationships/" + (long) subscriptionId + "/confirm",
-          "{}",
-          true,
-          requireAliasHeaderMap());
+          "PUT", "/v1/players/relationships/" + seg + "/confirm", "{}", true, requireAliasHeaderMap());
       sendAsync("players_relationships_confirm", true, res.code, res.body, null, false);
     });
     return 1;
+  }
+
+  public static double talo_players_relationships_confirm(double subscriptionId) {
+    return talo_players_relationships_confirm_str(String.valueOf((long) subscriptionId));
   }
 
   public static double talo_players_relationships_subscribers(String query) {
@@ -1474,18 +1495,20 @@ public final class TaloSDK {
     return 1;
   }
 
-  public static double talo_players_relationships_delete(double subscriptionId) {
+  /** {@code DELETE /v1/players/relationships/:id} — {@code id} numeric or UUID string. */
+  public static double talo_players_relationships_delete_str(String subscriptionId) {
     ensureConfigForApi();
+    final String seg = relationshipsSubscriptionPathSegment(subscriptionId);
     runPlayerApi("players_relationships_delete", () -> {
-      HttpResult res = httpRequest(
-          "DELETE",
-          "/v1/players/relationships/" + (long) subscriptionId,
-          null,
-          false,
-          requireAliasHeaderMap());
+      HttpResult res =
+          httpRequest("DELETE", "/v1/players/relationships/" + seg, null, false, requireAliasHeaderMap());
       sendAsync("players_relationships_delete", true, res.code, res.body, null, false);
     });
     return 1;
+  }
+
+  public static double talo_players_relationships_delete(double subscriptionId) {
+    return talo_players_relationships_delete_str(String.valueOf((long) subscriptionId));
   }
 
   // --- SocketTicketAPI ---
