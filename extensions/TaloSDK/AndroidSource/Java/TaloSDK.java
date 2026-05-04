@@ -1075,6 +1075,32 @@ public final class TaloSDK {
     return 1;
   }
 
+  /**
+   * POST {@code /v1/leaderboards/:internalName/entries} with body {@code {"score": score}} — set absolute score for the
+   * current alias (same HTTP contract as {@link #talo_leaderboard_entries_post}; convenience wrapper). Needs {@code
+   * x-talo-alias}. Async: {@code talo_op} = {@code leaderboard_entries_set_score}, {@code body} = API response JSON.
+   */
+  public static double talo_leaderboard_entries_set_score(String internalName, double score) {
+    ensureConfigForApi();
+    runPlayerApi("leaderboard_entries_set_score", () -> {
+      JSONObject postJson = new JSONObject();
+      try {
+        postJson.put("score", score);
+      } catch (JSONException e) {
+        throw new RuntimeException(e);
+      }
+      HttpResult postRes =
+          httpRequest(
+              "POST",
+              "/v1/leaderboards/" + urlEncodePathSegment(internalName) + "/entries",
+              postJson.toString(),
+              true,
+              requireAliasHeaderMap());
+      sendAsync("leaderboard_entries_set_score", true, postRes.code, postRes.body, null, false);
+    });
+    return 1;
+  }
+
   private static JSONObject unwrapJsonDataObject(JSONObject root) throws JSONException {
     if (root.has("data") && !root.isNull("data") && root.get("data") instanceof JSONObject)
       return root.getJSONObject("data");

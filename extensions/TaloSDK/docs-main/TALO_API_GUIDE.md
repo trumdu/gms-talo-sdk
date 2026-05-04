@@ -83,7 +83,7 @@ Talo responses can vary by endpoint/options. For robust parsing:
 
 Android extension emits Social Async with:
 - `id = 9829`
-- `talo_op` identifying operation (e.g. `identify`, `leaderboard_entries_get`, `leaderboard_entries_post`, `leaderboard_entries_add_score`)
+- `talo_op` identifying operation (e.g. `identify`, `leaderboard_entries_get`, `leaderboard_entries_post`, `leaderboard_entries_add_score`, `leaderboard_entries_set_score`)
 - `success`, `http_code`, `body`, `error`
 
 When adding new API wrappers, keep this shape unchanged for compatibility with existing GML handlers.
@@ -109,7 +109,7 @@ Canonical source: [Talo public docs JSON](https://api.trytalo.com/public/docs) (
 | PUT | `/v1/game-channels/:id` | `TaloSDK_game_channels_update` |
 | DELETE | `/v1/game-channels/:id` | `TaloSDK_game_channels_delete` |
 | GET | `/v1/leaderboards/:internalName/entries` | `TaloSDK_leaderboard_entries_get` |
-| POST | `/v1/leaderboards/:internalName/entries` | `TaloSDK_leaderboard_entries_post`; composite `TaloSDK_leaderboard_entries_add_score` (`leaderboard_entries_add_score`) |
+| POST | `/v1/leaderboards/:internalName/entries` | `TaloSDK_leaderboard_entries_post`; `TaloSDK_leaderboard_entries_set_score` (`leaderboard_entries_set_score`); composite `TaloSDK_leaderboard_entries_add_score` (`leaderboard_entries_add_score`) |
 | GET | `/v1/game-config` | `TaloSDK_game_config_get` |
 | GET | `/v1/game-feedback/categories` | `TaloSDK_game_feedback_categories_get` |
 | POST | `/v1/game-feedback/categories/:internalName` | `TaloSDK_game_feedback_create` |

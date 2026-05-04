@@ -44,6 +44,6 @@ Use this checklist before/after any change in `extensions/TaloSDK`.
 - Smoke test:
   - init/identify
   - leaderboard get
-  - leaderboard post/add_score
+  - leaderboard post / set_score / add_score
   - UI reaction (toast/pending message)
 
